@@ -1,2 +1,1 @@
-# deortiz93-gmail.com
-cc2020
+# Auction System
