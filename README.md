@@ -14,12 +14,11 @@ OAuth2 is used by the Management API and Authorization Service to ensure the con
 
 ### Management API
 
-Exposed to manage auctions, bids, and explore available items.
+Exposed to manage auctions, bids, and explore available items. Consists of a few DJANGO apps under a single project.
 
 ### Authentication
 
 Authentication service to grant the corresponding access tokens.
-
 ### Workers
 
 Workers are setup via CRON to execute routine tasks. Currently, the most important worker sets the status of expired auctions as fulfilled.
