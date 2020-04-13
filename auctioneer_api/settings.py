@@ -5,11 +5,12 @@ Django settings for auctioneer_api project.
 import os
 import auctions.apps
 import user_auth.apps
+import settings.environment
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xi9c_404kx5g2rt$3o72&_vbtb&1%##_t+x0svpn+fslp=lb21'
-DEBUG = os.environ.get('ENV', 'development') != 'production'
-ALLOWED_HOSTS = []
+DEBUG = settings.environment.ENVIRONMENT != 'production'
+ALLOWED_HOSTS = settings.environment.ALLOWED_HOSTS
 
 INSTALLED_APPS = [
     user_auth.apps.APP_NAME,
