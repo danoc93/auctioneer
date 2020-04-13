@@ -20,7 +20,7 @@ The API requires bearer tokens to be provided in all non-public operations. Thes
 
 Exposed under `/api/v1`
 
-The project generates an [Open API](https://swagger.io/docs/specification/about/) schema for the API, as well as a Swagger UI documentation explorer under ```/api/v1/docs```.
+The project generates an [Open API](https://swagger.io/docs/specification/about/) schema for the API, as well as a Swagger UI documentation explorer under ```/api/v1/docs```. This has been chosen given that the Specification is a standardized way of documenting APIs, unlike the built-in DRF generator.
 
 ### Auctioneer Authorization API
 
