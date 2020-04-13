@@ -1,13 +1,15 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from common.models.Currency import Currency
-from common.serializers.CurrencySerializer import CurrencySerializer
+from auctions.models.Currency import Currency
+from auctions.serializers.CurrencySerializer import CurrencySerializer
 
 
 class FetchCurrenciesView(APIView):
     """
-    Fetch the list of supported currencies.
+    List of supported currencies.
+
+    These values can be passed to different operations.
     """
 
     def get(self, request):

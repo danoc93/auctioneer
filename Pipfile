@@ -11,6 +11,7 @@ django-seed = "*"
 django = "==3.0"
 djangorestframework = "==3.11"
 drf-yasg = "*"
+django-oauth-toolkit = "*"
 
 [requires]
 python_version = "3.7"

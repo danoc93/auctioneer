@@ -1,13 +1,15 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from common.models.Country import Country
-from common.serializers.CountrySerializer import CountrySerializer
+from auctions.models.Country import Country
+from auctions.serializers.CountrySerializer import CountrySerializer
 
 
 class FetchCountriesView(APIView):
     """
-    Fetch the list of supported countries.
+    List of supported countries
+
+    These values can be passed to different operations.
     """
 
     def get(self, request):

@@ -1,13 +1,15 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from common.models.ItemCondition import ItemCondition
-from common.serializers.ItemConditionSerializer import ItemConditionSerializer
+from auctions.models.ItemCondition import ItemCondition
+from auctions.serializers.ItemConditionSerializer import ItemConditionSerializer
 
 
 class FetchItemConditionsView(APIView):
     """
-    Fetch the list of supported item conditions.
+    List of supported item conditions.
+
+    These values can be passed to different operations.
     """
 
     def get(self, request):

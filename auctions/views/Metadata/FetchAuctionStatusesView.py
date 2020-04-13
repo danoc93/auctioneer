@@ -1,14 +1,15 @@
-from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from common.models.AuctionStatus import AuctionStatus
-from common.serializers.AuctionStatusSerializer import AuctionStatusSerializer
+from auctions.models.AuctionStatus import AuctionStatus
+from auctions.serializers.AuctionStatusSerializer import AuctionStatusSerializer
 
 
 class FetchAuctionStatusesView(APIView):
     """
-    Fetch the list of supported auction status values.
+    List of supported Auction Status values
+
+    These values can be passed to different operations.
     """
 
     def get(self, request):

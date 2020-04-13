@@ -3,37 +3,24 @@ Django settings for auctioneer_api project.
 """
 
 import os
-import utils.apps
-import common.apps
 import auctions.apps
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import user_auth.apps
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'xi9c_404kx5g2rt$3o72&_vbtb&1%##_t+x0svpn+fslp=lb21'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = os.environ.get('ENV', 'development') != 'production'
 ALLOWED_HOSTS = []
 
-# Application definition
-
 INSTALLED_APPS = [
+    user_auth.apps.APP_NAME,
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    common.apps.APP_NAME,
-    utils.apps.APP_NAME,
     auctions.apps.APP_NAME,
+    'oauth2_provider',
     'rest_framework',
     'django_seed',
     'drf_yasg',
@@ -47,6 +34,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
 ROOT_URLCONF = 'auctioneer_api.urls'
@@ -79,9 +67,6 @@ DATABASES = {
     }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -97,9 +82,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -109,9 +91,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -125,6 +104,21 @@ SWAGGER_SETTINGS = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    )
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'oauth2_provider.backends.OAuth2Backend',
+)
+
+OAUTH_CLIENT_SECRET = 'fj3C0VJIf5yAXmZB4d3yeSoY2nGmSAKqyMBggpkrweUkvLfDd3S8RnPC2mu2MvV7zCEYNuA5Wgmf9tZDqT3IuFGBhoPdIPaZSFdDcWXnnUZihhR0AZ1gJPtT8rX1ZSr9'
+OAUTH_CLIENT_ID = 'bpKXNA1z7hQU9f41MbVdQmaRdj9aiC8ZDNcCT4yM'
+OAUTH_TOKEN_URL = 'http://localhost:8000/o/token/'
+OAUTH_TOKEN_REVOKE_URL = 'http://localhost:8000/o/revoke_token/'
+
+AUTH_USER_MODEL = "{}.User".format(user_auth.apps.APP_NAME)
