@@ -10,7 +10,7 @@ OAuth2 is used by the Management API and Authorization Service to ensure the con
 
 ## Parts
 
-The current system requires five individual parts working together. While these are maintained as part of a single Django Project, they could easily be scaled individually by ensuring the data is maintained.
+The current system requires five individual parts working together. While these are maintained as a few apps part of a single Django Project, they could easily be scaled individually as microservices.
 
 ### Auctioneer Management API
 
