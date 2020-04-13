@@ -68,7 +68,8 @@ As it stands, this is a single Django project. The migration folders have been g
 6. Run your server with ```make start-background-server``` and access ``/admin``.
 7. Under Applications register your API with the "Resource owner password-based" flow. Copy the client_id and the client_secret before closing it.
 8. Kill the server.
-9. Start the server (include the actual values for the variables) ```make start-background-server```.
+9. Update the [settings/environment.py](settings/environment.py) file with the obtained values.
+9. Start the server ```make start-background-server```.
 10. Start the workers with ```make start-background-workers```.
 11. Run the tester from a different context and give it the desired API endpoints. It should not fail.
 12. Validate the Management API docs under ```/api/v1/docs``` is accessible from the outside.
