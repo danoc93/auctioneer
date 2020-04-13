@@ -8,7 +8,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=30, unique=True, null=False)
     email = models.CharField(max_length=60, unique=True, null=False)
     city_name = models.TextField(null=False, max_length=30)
-    country = models.ForeignKey(Country, on_delete=models.PROTECT, null=False)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = "user"

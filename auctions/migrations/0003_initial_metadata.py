@@ -4,7 +4,7 @@ from django.db import migrations
 
 
 def add_currencies(apps, schema):
-    Model = apps.get_model('common', 'Currency')
+    Model = apps.get_model('auctions', 'Currency')
     for curr in ['usd', 'gbp']:
         c = Model()
         c.value = curr
@@ -12,7 +12,7 @@ def add_currencies(apps, schema):
 
 
 def add_auction_statuses(apps, schema):
-    Model = apps.get_model('common', 'AuctionStatus')
+    Model = apps.get_model('auctions', 'AuctionStatus')
     for curr in ['open', 'closed', 'fulfilled']:
         c = Model()
         c.value = curr
@@ -20,7 +20,7 @@ def add_auction_statuses(apps, schema):
 
 
 def add_conditions(apps, schema):
-    Model = apps.get_model('common', 'ItemCondition')
+    Model = apps.get_model('auctions', 'ItemCondition')
     for curr in ['new', 'used']:
         c = Model()
         c.value = curr
@@ -29,7 +29,7 @@ def add_conditions(apps, schema):
 
 def add_countries(apps, schema):
     countries = ['United States', 'United Kingdom']
-    Country = apps.get_model('common', 'Country')
+    Country = apps.get_model('auctions', 'Country')
     for country in countries:
         c = Country()
         c.name = country
@@ -39,7 +39,7 @@ def add_countries(apps, schema):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auctions', '0002_auto_20200413_2014'),
+        ('auctions', '0002_auto_20200413_2039'),
     ]
 
     operations = [
