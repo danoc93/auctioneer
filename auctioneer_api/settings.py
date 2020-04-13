@@ -116,9 +116,9 @@ AUTHENTICATION_BACKENDS = (
     'oauth2_provider.backends.OAuth2Backend',
 )
 
-OAUTH_CLIENT_SECRET = 'fj3C0VJIf5yAXmZB4d3yeSoY2nGmSAKqyMBggpkrweUkvLfDd3S8RnPC2mu2MvV7zCEYNuA5Wgmf9tZDqT3IuFGBhoPdIPaZSFdDcWXnnUZihhR0AZ1gJPtT8rX1ZSr9'
-OAUTH_CLIENT_ID = 'bpKXNA1z7hQU9f41MbVdQmaRdj9aiC8ZDNcCT4yM'
-OAUTH_TOKEN_URL = 'http://localhost:8000/o/token/'
-OAUTH_TOKEN_REVOKE_URL = 'http://localhost:8000/o/revoke_token/'
+OAUTH_CLIENT_SECRET = os.environ.get('OAUTH_CLIENT_SECRET')
+OAUTH_CLIENT_ID = os.environ.get('OAUTH_CLIENT_ID')
+OAUTH_TOKEN_URL = os.environ.get('OAUTH_TOKEN_URL')
+OAUTH_TOKEN_REVOKE_URL = os.environ.get('OAUTH_TOKEN_REVOKE_URL')
 
 AUTH_USER_MODEL = "{}.User".format(user_auth.apps.APP_NAME)

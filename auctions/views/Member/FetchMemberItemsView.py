@@ -19,7 +19,7 @@ class FetchMemberItemsView(APIView):
         }
     )
     def get(self, request):
-        current_user_id = 1
+        current_user_id = request.user.id
 
         items = Item.objects.filter(owner_id=current_user_id).order_by('registration_date_utc')
         item_serializer = ItemSerializer(items, many=True,

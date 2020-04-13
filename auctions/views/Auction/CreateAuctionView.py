@@ -50,7 +50,7 @@ class CreateAuctionView(APIView):
         request_body=request_schema
     )
     def post(self, request):
-        current_user_id = 1
+        current_user_id = request.user.id
 
         expiration_time_utc = get_datetime_parameter(request.data, 'expiration_time_utc', True)
         if expiration_time_utc < datetime.now():

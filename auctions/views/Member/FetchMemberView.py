@@ -19,7 +19,7 @@ class FetchMemberView(APIView):
         }
     )
     def get(self, request):
-        current_user_id = 1
+        current_user_id = request.user.id
 
         user_serializer = UserSerializer(User.objects.filter(id=current_user_id).first(), fields=USER_PRIVATE_VIEW)
 

@@ -40,7 +40,7 @@ class BidInAuctionView(APIView):
     )
     def post(self, request, auction_id):
 
-        current_user_id = 2
+        current_user_id = request.user.id
 
         auction_id = get_number_parameter({'auction_id': auction_id}, 'auction_id', int, True)
         auction = Auction.objects.filter(id=auction_id).first()

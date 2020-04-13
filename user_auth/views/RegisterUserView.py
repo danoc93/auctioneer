@@ -1,4 +1,5 @@
 import requests
+from django.db import IntegrityError
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -20,9 +21,19 @@ class RegisterUserView(APIView):
         # Current metadata
         data['country'] = Country.objects.filter(id=data['country']).first()
 
+        if not data.get('country', None) or not data.get('city_name', None):
+            return Response('Fields country and city_name are required.', 400)
+
+        data['is_superuser'] = False
+        data['is_staff'] = False
+        data['is_active'] = True
+
         # Validate the data
-        user = User(**data)
-        user.save()
+        try:
+            user = User.objects.create_user(**data)
+            user.save()
+        except IntegrityError as e:
+            return Response('Unable to create user, it already exists.', 409)
 
         # Fetch a token and pass it to the user.
         r = requests.post(

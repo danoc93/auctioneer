@@ -25,7 +25,7 @@ class FetchMemberBidsView(APIView):
         }
     )
     def get(self, request):
-        current_user_id = 1
+        current_user_id = request.user.id
 
         winner = get_boolean_parameter(request.query_params, 'winner', False, None)
 
