@@ -2,7 +2,7 @@
 
 The Auction-As-A-Service service monorepo.
 
-You can use the helper [scripts](scripts) folder to manage certain operations in the application.
+You can use the helper [Makefile](Makefile) commands to manage certain operations in the application.
 
 It requires [pipenv](https://github.com/pypa/pipenv) to be available as it is the core dependency service.
 
@@ -20,7 +20,9 @@ The API requires bearer tokens to be provided in all non-public operations. Thes
 
 Exposed under `/api/v1`
 
-The project generates an [Open API](https://swagger.io/docs/specification/about/) schema for the API, as well as a Swagger UI documentation explorer under ```/api/v1/docs```. This has been chosen given that the Specification is a standardized way of documenting APIs, unlike the built-in DRF generator.
+The project generates an [Open API](https://swagger.io/docs/specification/about/) schema for the API, as well as a Swagger UI documentation explorer under ```/api/v1/docs```. This has been chosen given that the Specification is a standardized way of documenting APIs, unlike the built-in DRF generator. This relies on the ```drf-yasg``` schema generating library.
+
+The Documentation explorer is a fully integrated front-end that allows you to interact with the API directly.
 
 ### Auctioneer Authorization API
 
@@ -59,17 +61,17 @@ This uses the default sqlite implementation, however it should be trivial to exp
 As it stands, this is a single Django project. The migration folders have been generated via ```scripts/prepare.sh``` and committed.
 
 1. Clone this repo.
-2. Install ```pipenv``` in your environment
-3. cd into this folder and ```pipenv shell```
-3. Run ```pipenv install```
-4. Setup the environment by running ```scripts/setup.sh```, this will apply the migrations on the system.
-6. Create the first superuser python3 manage.py createsuperuser.
-7. Run your server and access ``/admin``. Under Applications create one with the password flow. Copy the client_id and the client_secret before closing it.
-5. Define values for the environment variables required by the Auctioneer Authorization API using the created variable.
-6. Restart the server now that these variables have been set.
-7. Start the workers.
-8. Run the tester from a different context and give it the desired API endpoints. It should not fail.
-9. Validate the Management API docs under ```/api/v1/docs``` accessible from the outside.
+2. Install ```pipenv``` in your environment and add it to the PATH.
+3. Run ```make setup```, this will install dependencies and apply the migrations on the system.
+4. Whitelist the required hosts via ```ALLOWED_HOSTS``` in your project settings files.
+5. Create the first superuser ```make create-super-user```.
+6. Run your server with ```make start-background-server``` and access ``/admin``.
+7. Under Applications register your API with the "Resource owner password-based" flow. Copy the client_id and the client_secret before closing it.
+8. Kill the server.
+9. Start the server (include the actual values for the variables) ```make start-background-server```.
+10. Start the workers with ```make start-background-workers```.
+11. Run the tester from a different context and give it the desired API endpoints. It should not fail.
+12. Validate the Management API docs under ```/api/v1/docs``` is accessible from the outside.
 
 If something breaks, remove the generated DB file and repeat every step from (4) and onwards.
 
@@ -77,4 +79,4 @@ If something breaks, remove the generated DB file and repeat every step from (4)
 
 A tester file has been provided under ```e2e```. This tester will run against the API endpoints provided as arguments.
 
-This tester generates unique ids to run experiments.
+This tester generates unique ids to run experiments. Potentially, since it depends on a worker, you may end up with auctions that haven't been marked as fulfilled immediately. 

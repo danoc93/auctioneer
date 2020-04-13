@@ -1,10 +1,9 @@
 import requests
 from django.core.exceptions import SuspiciousOperation
-from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from auctioneer_api.settings import OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_TOKEN_REVOKE_URL
+from settings.environment import OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_TOKEN_REVOKE_URL
 
 
 class RevokeTokenView(APIView):

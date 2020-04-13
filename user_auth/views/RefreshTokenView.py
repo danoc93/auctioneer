@@ -2,7 +2,7 @@ import requests
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from auctioneer_api.settings import OAUTH_TOKEN_URL, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET
+from settings.environment import OAUTH_TOKEN_URL, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET
 from common.utils.parameters import get_string_parameter
 
 

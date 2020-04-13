@@ -1,0 +1,4 @@
+python3 manage.py runserver
+Watching for file changes with StatReloader
+[13/Apr/2020 22:34:34] "GET /api/v1/docs/ HTTP/1.1" 200 1863
+[13/Apr/2020 22:34:34] "GET /api/v1/docs/?format=openapi HTTP/1.1" 200 6105

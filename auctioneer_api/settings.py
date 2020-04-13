@@ -97,6 +97,11 @@ STATIC_URL = '/static/'
 SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False,
     'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
     },
     'DISPLAY_OPERATION_ID': False,
     'OPERATIONS_SORTER': 'method'
@@ -115,10 +120,5 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'oauth2_provider.backends.OAuth2Backend',
 )
-
-OAUTH_CLIENT_SECRET = os.environ.get('OAUTH_CLIENT_SECRET')
-OAUTH_CLIENT_ID = os.environ.get('OAUTH_CLIENT_ID')
-OAUTH_TOKEN_URL = os.environ.get('OAUTH_TOKEN_URL')
-OAUTH_TOKEN_REVOKE_URL = os.environ.get('OAUTH_TOKEN_REVOKE_URL')
 
 AUTH_USER_MODEL = "{}.User".format(user_auth.apps.APP_NAME)
