@@ -11,13 +11,7 @@ start-server:
 	pipenv run python3 manage.py runserver
 
 start-background-server:
-	pipenv make start-server &
-
-start-workers:
-	pipenv run python3 manage.py workers
-
-start-background-workers:
-	nohup make start-workers &
+	nohup make start-server & > /tmp/logs/auctioneer_server.out 2>&1
 
 create-super-user:
 	pipenv run python3 manage.py createsuperuser
