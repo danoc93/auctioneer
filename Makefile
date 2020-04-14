@@ -1,9 +1,11 @@
 prepare:
 	python3 manage.py makemigrations
+	pipenv lock
 
 setup:
 	pipenv install
 	pipenv run python3 manage.py migrate
+	sh scripts/build_crons.sh | crontab -
 
 start-server:
 	pipenv run python3 manage.py runserver

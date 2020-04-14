@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'rest_framework',
     'django_seed',
-    'drf_yasg',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [

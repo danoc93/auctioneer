@@ -1,0 +1,1 @@
+* * * * * pipenv run /Users/daniel/Repos/cc2020/manage.py complete_bids  >> /tmp/logs/complete_bids.log 2>&1
