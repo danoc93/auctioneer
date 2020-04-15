@@ -22,7 +22,8 @@ class FetchMemberBidsView(APIView):
         responses={
             '200': 'The list of available bids made by the user',
             '400': 'Invalid parameters/request',
-        }
+        },
+        tags=['member']
     )
     def get(self, request):
         current_user_id = request.user.id

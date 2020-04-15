@@ -47,7 +47,8 @@ class CreateAuctionView(APIView):
         responses={
             '200': 'The id of the created auction'
         },
-        request_body=request_schema
+        request_body=request_schema,
+        tags=['auction']
     )
     def post(self, request):
         current_user_id = request.user.id

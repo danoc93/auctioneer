@@ -24,7 +24,8 @@ class FetchAuctionBidsView(APIView):
             '200': 'The list of available bids for the provided auction',
             '400': 'Invalid request/Auction is not concluded',
             '404': 'The provided auction does not exist'
-        }
+        },
+        tags=['auction']
     )
     def get(self, request, auction_id):
         auction_id = get_number_parameter({'auction_id': auction_id}, 'auction_id', int, True)

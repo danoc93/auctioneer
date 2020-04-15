@@ -1,4 +1,5 @@
 from django.http import Http404
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -17,6 +18,14 @@ class FetchAuctionView(APIView):
     If this auction has been fulfilled, the winning bid is also appended.
     """
 
+    @swagger_auto_schema(
+        responses={
+            '200': 'The id of the created bid record',
+            '400': 'The action is not valid/request is invalid',
+            '404': 'The provided auction does not exist'
+        },
+        tags=['auction']
+    )
     def get(self, request, auction_id):
         auction_id = get_number_parameter({'auction_id': auction_id}, 'auction_id', int, True)
         auction = Auction.objects.filter(id=auction_id).first()

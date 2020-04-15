@@ -1,5 +1,6 @@
 import requests
 from django.core.exceptions import SuspiciousOperation
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -13,6 +14,12 @@ class RevokeTokenView(APIView):
     This endpoint extracts the required token from the provided request and thus is not public.
     """
 
+    @swagger_auto_schema(
+        responses={
+            '200': 'The token metadata',
+            '401': 'Invalid credentials'
+        },
+    )
     def post(self, request):
         token = request.META.get('HTTP_AUTHORIZATION')
 

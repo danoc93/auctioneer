@@ -16,7 +16,8 @@ class FetchMemberView(APIView):
     @swagger_auto_schema(
         responses={
             '200': 'The member public view',
-        }
+        },
+        tags=['member']
     )
     def get(self, request):
         current_user_id = request.user.id

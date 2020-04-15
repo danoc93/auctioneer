@@ -1,9 +1,20 @@
 import requests
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from settings.environment import OAUTH_TOKEN_URL, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET
+
+request_schema = openapi.Schema(
+    type="object",
+    required=['username', 'password'],
+    properties={
+        'username': openapi.Schema(type=openapi.TYPE_STRING),
+        'password': openapi.Schema(type=openapi.TYPE_STRING),
+    }
+)
 
 
 class LoginUserView(APIView):
@@ -12,6 +23,14 @@ class LoginUserView(APIView):
     """
     permission_classes = [AllowAny]
 
+    @swagger_auto_schema(
+        responses={
+            '200': 'The token metadata',
+            '401': 'Invalid credentials',
+            '403': 'Invalid login'
+        },
+        request_body=request_schema
+    )
     def post(self, request):
         data = request.data
 

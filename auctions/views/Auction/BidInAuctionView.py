@@ -36,7 +36,8 @@ class BidInAuctionView(APIView):
             '400': 'The action is not valid/request is invalid',
             '404': 'The provided auction does not exist'
         },
-        request_body=request_schema
+        request_body=request_schema,
+        tags=['auction']
     )
     def post(self, request, auction_id):
 

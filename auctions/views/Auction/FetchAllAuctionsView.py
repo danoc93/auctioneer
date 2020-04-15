@@ -30,7 +30,8 @@ class FetchAllAuctionsView(APIView):
             openapi.Parameter('status', openapi.IN_QUERY, type=openapi.TYPE_STRING,
                               enum=AuctionStatus.list()),
             openapi.Parameter('owner_id', openapi.IN_QUERY, type=openapi.TYPE_INTEGER)
-        ]
+        ],
+        tags=['auction']
     )
     def get(self, request):
         owner_id = get_number_parameter(request.query_params, 'owner_id', int)

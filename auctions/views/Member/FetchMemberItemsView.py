@@ -16,7 +16,8 @@ class FetchMemberItemsView(APIView):
     @swagger_auto_schema(
         responses={
             '200': 'The list of items added by the member',
-        }
+        },
+        tags=['member']
     )
     def get(self, request):
         current_user_id = request.user.id
