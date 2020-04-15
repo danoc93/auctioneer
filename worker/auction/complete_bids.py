@@ -47,4 +47,4 @@ def check_bids():
             print('Bid {} set as winner for auction {}'.format(winning_bid.id, auction.id))
             # Here we could potentially email people.
         else:
-            print('Auction {} has no winning bid'.format(winning_bid.id, auction.id))
+            print('Auction {} has no winning bid'.format(auction.id))

@@ -38,7 +38,7 @@ class FetchAuctionView(APIView):
             winning_bid = Bid.objects.filter(auction=auction, is_winning_bid=True).first()
             if winning_bid:
                 # No auction as it is redundant.
-                bid = BidSerializer(winning_bid, fields=['bid_amount', 'bid_currency', 'user', 'bid_time_utc'])
+                bid = BidSerializer(winning_bid, fields=['id', 'bid_amount', 'bid_currency', 'user', 'bid_time_utc'])
 
         serializer = AuctionSerializer(auction)
         response = serializer.data
