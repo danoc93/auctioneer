@@ -20,7 +20,7 @@ class FetchAuctionView(APIView):
 
     @swagger_auto_schema(
         responses={
-            '200': 'The id of the created bid record',
+            '200': 'The requested auction',
             '400': 'The action is not valid/request is invalid',
             '404': 'The provided auction does not exist'
         },
